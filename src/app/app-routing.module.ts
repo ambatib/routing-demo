@@ -15,18 +15,27 @@ const routes: Routes = [
   { path:'departments',
    component:DepartmentListComponent  
   },
-  {path:'departments/:id',component:DepartmentDetailComponent,
+  {path:'departments/:id',component:DepartmentDetailComponent, //The :id in the second route is a token for a route parameter
   children:[
     {path:'overview', component:DepartmentOverviewComponent},
     {path:'contact',component:DepartmentContactComponent}
   ]
   },
   {path:'employees',component:EmployeeListComponent},
+  {
+   path: 'depts',
+  component: DepartmentListComponent,
+   data: { title: 'Department List' }
+ },
   {path:"**",component:PageNotFoundComponent} //wildcard path should be last
+   
 ];
 
+//The data property in the third route is a place to store arbitrary data associated with this specific route
+
+
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,{ enableTracing: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
